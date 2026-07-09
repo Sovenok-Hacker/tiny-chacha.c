@@ -1,2 +1,2 @@
-tests/block_function
-tests/chacha20_cipher
+tests/test_block_function
+tests/test_chacha20_cipher

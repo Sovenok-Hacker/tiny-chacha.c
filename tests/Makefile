@@ -12,16 +12,16 @@ TARGETS = test_block_function test_chacha20_cipher
 all: $(TARGETS)
 
 test_block_function: test_block_function.c $(LIB_SRC)
-	$(CC) $(CFLAGS) $(INCLUDES) $^ -o block_function
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 test_chacha20_cipher: test_chacha20_cipher.c $(LIB_SRC)
-	$(CC) $(CFLAGS) $(INCLUDES) $^ -o chacha20_cipher
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 run: all
 	@echo "=========================================="
-	@./block_function
+	@./test_block_function
 	@echo "=========================================="
-	@./chacha20_cipher
+	@./test_chacha20_cipher
 	@echo "=========================================="
 
 clean:
