@@ -1,1 +1,2 @@
 tests/block_function
+tests/chacha20_cipher
