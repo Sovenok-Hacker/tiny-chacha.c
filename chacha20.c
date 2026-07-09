@@ -53,7 +53,7 @@ void chacha20_block(uint8_t out[64], const uint32_t key[8], const uint32_t nonce
     _chacha_init(s, key, nonce, block_count);
 
     // Save the inital state
-    chacha_state_t is;
+    uint32_t is[16];
     for (unsigned int i = 0; i < 16; i++) is[i] = s[i];
 
     // The rounds themselves
