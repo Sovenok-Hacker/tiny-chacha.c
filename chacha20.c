@@ -29,7 +29,7 @@ static inline void dump32_le(const uint32_t n, uint8_t out[4]) {
 // ChaCha state
 typedef uint32_t chacha_state_t[16];
 
-static inline void _chacha_init(chacha_state_t s, uint32_t key[8], uint32_t nonce[3], uint32_t block_count) {
+static inline void _chacha_init(chacha_state_t s, const uint32_t key[8], const uint32_t nonce[3], const uint32_t block_count) {
 	// The first four words (0-3) are constants
 	s[0] = 0x61707865; s[1] = 0x3320646e;
 	s[2] = 0x79622d32; s[3] = 0x6b206574;
@@ -48,7 +48,7 @@ static inline void _chacha_init(chacha_state_t s, uint32_t key[8], uint32_t nonc
 }
 
 // ChaCha20 block function
-void chacha20_block(uint8_t out[64], uint32_t key[8], uint32_t nonce[3], uint32_t block_count) {
+void chacha20_block(uint8_t out[64], const uint32_t key[8], const uint32_t nonce[3], const uint32_t block_count) {
     // Create a ChaCha state
     chacha_state_t s;
 
@@ -82,7 +82,7 @@ void chacha20_block(uint8_t out[64], uint32_t key[8], uint32_t nonce[3], uint32_
 }
 
 // Encrypt/decrypt a message, works in-place
-void chacha20_cipher(uint8_t key_bytes[32], uint8_t nonce_bytes[12], uint32_t counter, uint8_t *msg, unsigned long len) {
+void chacha20_cipher(const uint8_t key_bytes[32], const uint8_t nonce_bytes[12], const uint32_t counter, uint8_t *msg, const unsigned long len) {
     // I hate big endian :(
     uint32_t key[8];
     uint32_t nonce[3];
