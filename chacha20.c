@@ -26,10 +26,7 @@ static inline void dump32_le(const uint32_t n, uint8_t out[4]) {
     out[3] = (uint8_t)((n >> 24) & 0xFF);
 }
 
-// ChaCha state
-typedef uint32_t chacha_state_t[16];
-
-static inline void _chacha_init(chacha_state_t s, const uint32_t key[8], const uint32_t nonce[3], const uint32_t block_count) {
+static inline void _chacha_init(uint32_t s[16], const uint32_t key[8], const uint32_t nonce[3], const uint32_t block_count) {
 	// The first four words (0-3) are constants
 	s[0] = 0x61707865; s[1] = 0x3320646e;
 	s[2] = 0x79622d32; s[3] = 0x6b206574;
@@ -50,7 +47,7 @@ static inline void _chacha_init(chacha_state_t s, const uint32_t key[8], const u
 // ChaCha20 block function
 void chacha20_block(uint8_t out[64], const uint32_t key[8], const uint32_t nonce[3], const uint32_t block_count) {
     // Create a ChaCha state
-    chacha_state_t s;
+    uint32_t s[16];
 
     // Initialize the state
     _chacha_init(s, key, nonce, block_count);
